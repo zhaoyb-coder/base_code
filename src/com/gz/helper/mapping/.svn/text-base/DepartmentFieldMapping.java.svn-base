@@ -1,0 +1,44 @@
+package com.doe.a5.helper.mapping;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.doe.a5.helper.StringHelper;
+import com.doe.a5.vo.common.SysDepartment;
+
+/**
+ * @ClassName: DepartmentFieldMapping
+ * @Description: 阈值表值映射
+ * <p>Copyright: Copyright (c) 2017 </p>
+ * <p>Company: DOE</p>
+ * @author JXL 
+ * @date 2018-1-16 上午10:15:15
+ * @version V1.0
+ */
+public class DepartmentFieldMapping extends Mapping {
+	private Map<String,Object> map = new HashMap<String, Object>();
+			
+	public DepartmentFieldMapping(List<SysDepartment> mappingList) {
+		if(mappingList != null) {
+			for(SysDepartment result : mappingList){
+				map.put(result.getDepartment_id(), result.getFullname());
+			}
+		}
+	}
+
+	@Override
+	public Object map(String value) {
+		if(value != null) {
+			String[] values = value.split(",");
+			StringBuilder builder = new StringBuilder();
+			for(int i = 0; i < values.length; i++){
+				if(i != 0)builder.append(",");
+				builder.append(StringHelper.handleNull(map.get(values[i])));
+			}
+			return builder.toString();
+		}
+		return "";
+	}
+
+}

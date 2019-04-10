@@ -1,0 +1,20 @@
+package com.doe.a5.helper.mapping;
+
+/**
+ * @ClassName: YmdHmsDateMapping
+ * @Description: 对日期进行格式化：最终格式：yyyy-mm-dd hh:MM:ss
+ * <p>Copyright: Copyright (c) 2018 </p>
+ * <p>Company: DOE</p>
+ * @author JXL 
+ * @date 2018-5-14 上午10:15:38
+ * @version V1.0
+ */
+public class YmdHmsDateMapping extends Mapping {
+	@Override
+	public Object map(String value) {
+		if(value != null) {
+			return value.substring(0, 19);
+		}
+		return "";
+	}
+}

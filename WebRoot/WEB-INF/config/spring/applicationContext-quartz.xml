@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
+	default-lazy-init="true">
+	<!-- quartz任务调度 -->
+	<!-- <bean id="localQuartzScheduler1" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		Triggers集成
+		<property name="triggers">
+			<list>
+				<ref bean="testDayTrigger1" />	
+				<ref bean="khsendEmailDayTrigger" />	
+				 
+				<ref bean="xxxDayTrigger" />	
+				<ref bean="xxxxxx" />	
+				
+			</list>
+		</property>
+		<property name="quartzProperties">
+			<props>
+				<prop key="org.quartz.threadPool.threadCount">5</prop>
+			</props>
+		</property>
+		<property name="startupDelay" value="15" />
+	</bean> -->
+	
+	<!-- 定时任务，基本格式
+	<bean id="xxxDayTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="xxxDayJob" />
+		<property name="cronExpression" value="0 5 1 * * ?" />   //代表凌晨1点过5分开始同步，具体定时表达式，可以找 quartz表达式
+	</bean>
+	<bean id="xxxDayJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="xxx类" />
+		<property name="targetMethod" value="xxx方法" />		
+		<property name="concurrent" value="false" />
+	</bean>
+	<bean id="xxx类" class="xxx.xxx.xx.xx">
+		<property name="username" value="1111"></property>
+	</bean>
+	-->
+	<!-- 2.1：定义触发器的bean，定义一个Simple的Trigger，一个触发器只能和一个任务进行绑定 -->
+    <!-- <bean name="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        指定Trigger的名称
+        <property name="name" value="hw_trigger"/>
+        指定Trigger的名称
+        <property name="group" value="hw_trigger_group"/>
+        指定Tirgger绑定的Job
+        <property name="jobDetail" ref="hwJob"/>
+        指定Trigger的延迟时间 1s后运行
+        <property name="startDelay" value="1000"/>
+        指定Trigger的重复间隔  5s
+        <property name="repeatInterval" value="5000"/>
+        指定Trigger的重复次数
+        <property name="repeatCount" value="5"/>
+    </bean> -->
+	<!-- test测试 -->
+	<!-- <bean id="testDayTrigger1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="testDayJob1" />
+		<property name="cronExpression" value="0 1 0 * * ?" />   每1秒钟，执行一次
+	</bean>
+	<bean id="testDayJob1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="testTask1" />
+		<property name="targetMethod" value="testStart" />		
+		<property name="concurrent" value="false" />
+	</bean>
+	<bean id="testTask1" class="com.test.TaskTest">
+		<property name="hello" value="hello,welcome to gzquartz"></property>
+	</bean>
+	 -->
+	<!-- 考核邮件发送 
+	<bean id="khsendEmailDayTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="khsendEmailDayJob" />
+		<property name="cronExpression" value="0 0 8 7-15 * ?" />    
+	</bean>
+	<bean id="khsendEmailDayJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="khsendEmail" />
+		<property name="targetMethod" value="AutoSendEmail" />		
+		<property name="concurrent" value="false" />
+	</bean>
+	<bean id="khsendEmail" class="com.doe.a5.web.action.cygc.kh.sendemail.KHsendEmailAction"> 
+		<property name="hello" value="自动发邮件开始"></property>
+	</bean>
+	-->
+</beans>	

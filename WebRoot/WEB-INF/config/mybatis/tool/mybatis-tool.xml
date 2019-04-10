@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.dao.tool.ToolDao">
+	
+	
+	<insert id="add_modal" >
+		insert into TOOL_FILE (FILEID,FILENAME,FILEPATH,FILETYPE,UPLOAD_DATE,FILE_CODENAME,DOWNPATH)
+		values(#{fileid},#{filename},#{filepath},#{filetype},#{upload_date},#{file_codeName},#{downpath})
+	</insert>
+	
+</mapper>

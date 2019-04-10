@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.dao.common.SysDomainDao">
+     <!--联合基础信息-->
+	<resultMap type="SysDomain" id="sysDomainList">
+		<id column="domain_id" property="domain_id" />
+		<result column="domain_name" property="domain_name" />
+		<result column="domain_code" property="domain_code" />
+		<result column="domain_description" property="domain_description" />
+		<result column="domain_order" property="domain_order" />
+		<result column="domain_level" property="domain_level" />
+		<result column="create_time" property="create_time" />
+		<result column="create_userid" property="create_userid" />
+		<result column="update_time" property="update_time" />
+		<result column="update_userid" property="update_userid" />
+	</resultMap>
+	
+  	<sql id="query_where">
+  		<where>
+  			<if test="vo != null and vo.domain_name != null and vo.domain_name != '' ">
+  				AND domain_name = #{vo.domain_name}
+  			</if>
+  			<if test="filter != null and filter != '' ">
+  				AND ${filter}
+  			</if>
+  		</where>
+  	</sql>
+     
+	 <select id="queryAll" resultMap="sysDomainList">
+     	select * from sys_domain
+		<include refid="query_where" /> 
+		${order}
+     </select>
+     
+     <select id="queryForSelect" resultMap="sysDomainList">
+     	${select} from sys_domain
+		<include refid="query_where" /> 
+		${order}
+     </select>
+     
+</mapper>

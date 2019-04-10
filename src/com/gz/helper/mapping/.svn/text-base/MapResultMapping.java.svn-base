@@ -1,0 +1,59 @@
+package com.doe.a5.helper.mapping;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.doe.a5.helper.StringHelper;
+
+/**
+ * @ClassName: MapResultMapping
+ * @Description: 通用查询表结构映射
+ * <p>Copyright: Copyright (c) 2018 </p>
+ * <p>Company: DOE</p>
+ * @author JXL 
+ * @date 2018-4-16 上午11:05:24
+ * @version V1.0
+ */
+public class MapResultMapping extends Mapping {
+	private Map<String,Object> map = new HashMap<String, Object>();
+	
+	
+	/**
+	 * 对数据库中查询的结果集进行映射
+	 * @param list 数据库中查询到的list,[{eventid:111,mc:名称}]
+	 * @param key 
+	 * @param value
+	 */
+	public MapResultMapping(List<Map<String, Object>> list, String key, String value) {
+		if(list != null) {
+			for(Map<String, Object> result : list){
+				map.put(result.get(key) + "", result.get(value));
+			}
+		}
+	}
+	/**
+	 * 
+	 * @param list,数据库中查询到的list,[{eventid:111,mc:名称}]
+	 */
+	public MapResultMapping(List<Map<String, Object>> list) {
+		this(list, "EVENTID", "MC");
+	}
+	
+
+
+	@Override
+	public Object map(String value) {
+		if(value != null) {
+			String[] values = value.split(",");
+			StringBuilder builder = new StringBuilder();
+			for(int i = 0; i < values.length; i++){
+				if(i != 0)builder.append(",");
+				builder.append(StringHelper.handleNull(map.get(values[i])));
+			}
+			return builder.toString();
+		}
+		return "";
+	}
+
+}

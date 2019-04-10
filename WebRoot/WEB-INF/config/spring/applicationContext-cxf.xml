@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd 
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd "
+		>
+  	<!-- 引入CXF下面的配置文件 
+    <import resource="classpath:META-INF/cxf/cxf.xml" /> 
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml" /> -->  
+    
+    <!-- 配置需要暴露的BeanService
+    <bean id="userService" class="proser.restful.test.UserService"/>  
+    <jaxrs:server id="restContainer" address="/"> 
+    	<jaxrs:providers>  
+            <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>  
+        </jaxrs:providers> 
+        <jaxrs:serviceBeans>  
+            <ref bean="userService" />  
+        </jaxrs:serviceBeans>  
+    </jaxrs:server>  
+     
+    <bean id="YbxtService" class="a5server.restful.YbxtService"/>
+    <bean id="ScdLoginService" class="a5server.restful.ScdLoginService"/>  
+    <jaxrs:server id="restContainer" address="/">  
+		<jaxrs:providers>  
+            <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>  
+        </jaxrs:providers>
+        <jaxrs:serviceBeans>  
+            <ref bean="YbxtService" /> 
+            <ref bean="ScdLoginService" /> 
+        </jaxrs:serviceBeans>  
+    </jaxrs:server>
+    -->  
+</beans>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.dao.right.RightDao">
+	
+	
+	<!--查询 用户列表  -->
+	<select id="query_list" parameterType="map" resultType="map">
+		select * from QX_ROLE t order by r_level 
+	</select>
+	<select id="query_menulist" parameterType="map" resultType="map">
+		select * from QX_MENU_INFO t  order by m_level 
+	</select>
+	<select id="query_role" parameterType="map" resultType="map">
+		select * from qx_role where rid  not in (select r_id from qx_user_role where u_id =#{uuid})
+	</select>
+	
+	<select id="queryTopList" parameterType="map" resultType="map">
+		select * from QX_MENU_INFO t where t.m_level = 0
+	</select>
+	
+	<!-- topid查找所属的left一级菜单 -->
+	<select id="queryLeftOne" parameterType="map" resultType="map">
+		select * from QX_MENU_INFO t where t.m_level = 1 
+		and t.m_follow = #{topid}
+	</select>
+	<select id="queryLeft" parameterType="map" resultType="map">
+		select * from QX_MENU_INFO t where t.m_level = 1 
+	</select>
+	
+	<delete id="deleteUserRoleById" parameterType="map">
+		delete from qx_user_role where u_id = #{uid}
+	</delete>
+	
+	<insert id="saveUserRole" parameterType="map">
+		insert into qx_user_role (uuid,r_id,u_id)
+		values
+		(#{uuid},#{rid},#{uid})
+	</insert>
+	
+	<insert id="saveMenu" parameterType="Right">
+		insert into sys_menu (id, name, url, icon, pid, seq, level, create_time)
+		values
+		(#{id},#{name},#{url},#{icon},#{pid},#{seq},#{level},#{create_time})
+	</insert>
+	<update id="updateMenu" parameterType="Right">
+		update sys_menu set name=#{name},url=#{url},icon=#{icon},update_time=#{update_time}
+		where id =#{id}
+	</update>
+	
+	<!--查询 菜单列表  -->
+	<select id="query_right" parameterType="map" resultType="map">
+	<!-- SELECT m.*,m.name as text FROM sys_user_role ur
+	LEFT JOIN sys_role_menu rm ON rm.role_id = ur.role_id
+	LEFT JOIN sys_menu m ON m.id = rm.resource_id 
+	WHERE ur.user_id = #{userid}
+	<if test="level != null and level != ''">
+	  and m.level = #{level}
+	</if>
+	<if test="pid != null and pid != ''">
+	  and m.pid = #{pid}
+	</if>
+	order by m.seq  -->
+	SELECT m.*,m.name as text FROM sys_menu m 
+	WHERE 1=1
+	<if test="level != null and level != ''">
+	  and m.level = #{level}
+	</if>
+	<if test="pid != null and pid != ''">
+	  and m.pid = #{pid}
+	</if>
+	 order by m.seq
+	</select>
+	
+	<!--查询 此菜单是否属于此角色  -->
+	<select id="query_menu_role" parameterType="map" resultType="map">
+	select ri.* from qx_role_right rr
+		left join qx_right_info ri on ri.r_id = rr.right_id
+		where rr.role_id = #{role_id}
+		and ri.m_id =#{m_id}
+	</select>
+	
+	<select id="query_rid" parameterType="map" resultType="map">
+	   select * from QX_ROLE_RIGHT where ROLE_ID =#{roleId}
+	</select>
+	
+	<delete id="deleteRightInfoById" parameterType="map">
+		delete from QX_RIGHT_INFO where R_ID = #{rightId}
+	</delete>
+	
+	<delete id="deleteRolRightById" parameterType="map">
+		delete from qx_role_right where ROLE_ID = #{roleId}
+	</delete>
+	
+	<insert id="saveRightinfo" parameterType="map">
+		insert into QX_RIGHT_INFO (uuid,r_id,M_id)
+		values
+		(#{uuid},#{r_id},#{M_id})
+	</insert>
+	<insert id="saveRoleRight" parameterType="map">
+		insert into QX_ROLE_RIGHT (uuid,role_id,right_id)
+		values
+		(#{uuid},#{role_id},#{right_id})
+	</insert>
+	
+	
+	
+	
+
+</mapper>

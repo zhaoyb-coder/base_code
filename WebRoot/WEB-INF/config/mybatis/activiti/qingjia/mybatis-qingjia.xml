@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.dao.activiti.qingjia.QjDao">
+	
+	<select id="qj_list"   resultType="map">
+		 select * from oa_task
+	</select>
+	
+	<insert id="addModel" parameterType="Qingjia">
+	insert into oa_task (eventid,task_time,processInstanceId,userId,start_time,
+	task_resonse,task_type,task_state
+	) values(
+	#{eventid},#{task_time},#{processInstanceId},#{userId},#{start_time},
+	#{task_resonse},#{task_type},#{task_state}
+	)
+	</insert>
+	
+</mapper>

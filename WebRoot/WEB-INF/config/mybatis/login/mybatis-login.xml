@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.dao.login.LoginDao">
+	
+	<select id="query_loginName"   resultType="map">
+		 select * from SYS_USER u
+		 where u.login_name = #{login_name}
+	</select>
+	
+	<!-- 查询 菜单列表  
+	<select id="query_menu" parameterType="map" resultType="map">
+		 select qmi.* from qx_user_role qur 
+	     left join qx_role_right qrr on qrr.role_id = qur.r_id
+	     left join qx_right_info qri on qri.r_id = qrr.right_id
+	     left join qx_menu_info qmi on qri.m_id = qmi.m_id
+	     where qur.u_id = #{uuid}
+	     <if test="m_left != null">
+	     	and qmi.m_left = #{m_left}
+	     </if>
+	     <if test="m_level != null">
+	     	and qmi.m_level = #{m_level}
+	     </if>
+	     <if test="m_pid != null">
+	     	and qmi.m_pid = #{m_pid}
+	     </if>
+	     <if test="m_tid != null">
+	     	and qmi.m_tid = #{m_tid}
+	     </if>
+	     <if test="m_follow != null">
+	     	and qmi.m_follow = #{m_follow}
+	     </if>
+	     order by M_ORDER
+	</select> -->
+</mapper>

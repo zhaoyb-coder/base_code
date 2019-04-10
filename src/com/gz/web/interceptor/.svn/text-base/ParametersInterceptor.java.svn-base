@@ -1,0 +1,26 @@
+package com.doe.a5.web.interceptor;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import com.doe.a5.web.filter.FilteredRequest;
+
+/**
+ * @ClassName: ParametersInterceptor
+ * @Description: 对请求的参数进行拦截
+ * <p>Copyright: Copyright (c) 2017 </p>
+ * <p>Company: DOE</p>
+ * @author JXL 
+ * @date 2018-1-25 下午5:29:25
+ * @version V1.0
+ */
+public class ParametersInterceptor extends HandlerInterceptorAdapter {
+	@Override
+	public boolean preHandle(HttpServletRequest request,
+			HttpServletResponse response, Object handler) throws Exception {
+		return super.preHandle(new FilteredRequest(request), response, handler);
+	}
+	
+}

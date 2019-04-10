@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.dao.FileInfoDao">
+	
+	
+	<insert id="addModal" >
+		insert into sys_file_info (id,fileid,realname,downpath,create_time,upload_user,update_time,uploadpath)
+		values(#{id},#{fileid},#{realname},#{downpath},#{create_time},#{upload_user},#{update_time},#{uploadpath})
+	</insert>
+	
+</mapper>	

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.dao.user.UserDao">
+	
+	
+	<!--查询 用户列表  -->
+	<select id="query_list" parameterType="map" resultType="map">
+		select u.*,qr.r_name from SYS_USER u
+		 left join qx_user_role qur on qur.u_id = u.uuid
+		 left join qx_role qr on qr.rid = qur.r_id 
+		order by u.create_date desc
+	</select>
+	<insert id="add_modal" >
+		insert into SYS_USER (UUID,USERNAME,USERID,PASSWORD)
+		values(#{uuid},#{username},#{userid},#{password})
+	</insert>
+	
+	<delete id="del_modal">
+		delete from SYS_USER where UUID = #{uuid}
+	</delete>
+</mapper>

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/A5/!svn/ver/55331/JP/jp_doe_a5/jp_doe_a5/src/com/doe/a5/helper/mapping
+END
+YmdDateMapping.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/A5/!svn/ver/39435/JP/jp_doe_a5/jp_doe_a5/src/com/doe/a5/helper/mapping/YmdDateMapping.java
+END
+Mapping.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/A5/!svn/ver/33223/JP/jp_doe_a5/jp_doe_a5/src/com/doe/a5/helper/mapping/Mapping.java
+END
+DomainFieldMapping.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/A5/!svn/ver/37307/JP/jp_doe_a5/jp_doe_a5/src/com/doe/a5/helper/mapping/DomainFieldMapping.java
+END
+DepartmentFieldMapping.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/A5/!svn/ver/55331/JP/jp_doe_a5/jp_doe_a5/src/com/doe/a5/helper/mapping/DepartmentFieldMapping.java
+END
+MapResultMapping.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/A5/!svn/ver/37303/JP/jp_doe_a5/jp_doe_a5/src/com/doe/a5/helper/mapping/MapResultMapping.java
+END
+YmdHmsDateMapping.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/A5/!svn/ver/39434/JP/jp_doe_a5/jp_doe_a5/src/com/doe/a5/helper/mapping/YmdHmsDateMapping.java
+END

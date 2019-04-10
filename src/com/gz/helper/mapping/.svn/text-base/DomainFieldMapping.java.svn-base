@@ -1,0 +1,48 @@
+package com.doe.a5.helper.mapping;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.doe.a5.helper.StringHelper;
+import com.doe.a5.vo.common.SysDomain;
+
+/**
+ * @ClassName: DomainFieldMapping
+ * @Description: 阈值表值映射
+ * <p>Copyright: Copyright (c) 2017 </p>
+ * <p>Company: DOE</p>
+ * @author JXL 
+ * @date 2018-1-16 上午10:15:15
+ * @version V1.0
+ */
+public class DomainFieldMapping extends Mapping {
+	private Map<String,Object> map = new HashMap<String, Object>();
+			
+	public DomainFieldMapping(List<SysDomain> mappingList) {
+		if(mappingList != null) {
+			for(SysDomain result : mappingList){
+				map.put(result.getDomain_code(), result.getDomain_description());
+			}
+		}
+	}
+
+	/**
+	 * 01,02,03字段里的值，映射成对应的中文转油，脱水，注入等
+	 * @param value 格式为：01,02,03
+	 * @return
+	 */
+	public Object map(String value) {
+		if(value != null) {
+			String[] values = value.split(",");
+			StringBuilder builder = new StringBuilder();
+			for(int i = 0; i < values.length; i++){
+				if(i != 0)builder.append(",");
+				builder.append(StringHelper.handleNull(map.get(values[i])));
+			}
+			return builder.toString();
+		}
+		return "";
+	}
+
+}
